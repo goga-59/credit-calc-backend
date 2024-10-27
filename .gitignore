@@ -1,0 +1,13 @@
+.idea/
+.gradle/
+build/
+out/
+*.iml
+*.jar
+*.class
+.DS_Store
+spring-shell.log
+test.mv.db
+
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
