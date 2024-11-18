@@ -4,28 +4,28 @@ import jakarta.validation.constraints.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import ru.creditcalc.backend.model.attribute.InterestRate;
+import ru.creditcalc.backend.model.attribute.LoanPurpose;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CreditCalculatorDto {
 
     @NotNull
-    @Min(0)
-    @Max(10000000)
-    private long loanAmount;
+    @Min(10000) @Max(1000000)
+    private int loanAmount;
 
     @NotNull
-    @Min(0)
-    @Max(30)
-    private byte deadline;
-
-    @NotBlank
-    @Size(min = 1, max = 10)
-    private String loanPurpose;
+    @Min(1) @Max(30)
+    private byte loanTerm;
 
     @NotNull
-    @Min(0)
-    @Max(100)
-    private byte interestRate;
+    private LoanPurpose loanPurpose;
+
+    @NotNull
+    private InterestRate interestRate;
+
+    @PositiveOrZero
+    private int downPayment;
 
 }

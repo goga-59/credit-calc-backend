@@ -17,23 +17,22 @@ import java.time.LocalDate;
 public final class CreditSubmitDto {
 
     @NotBlank
-    @Size(min = 1, max = 64)
     private String name;
 
     @NotBlank
-    @Size(min = 11, max = 11)
+    @Pattern(regexp = "^\\d{11}$")
     private String phone;
 
     @Email
     private String email;
 
     @NotBlank
-    @Size(min = 1, max = 64)
+    @Size(min = 10)
     private String address;
 
     @Past
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate birthDate;
+    private LocalDate birthday;
 
     @NotNull
     private MaritalStatus maritalStatus;
@@ -43,7 +42,7 @@ public final class CreditSubmitDto {
     private int salary;
 
     @NotNull
-    private EmploymentType employmentStatus;
+    private EmploymentType employmentType;
 
     @NotNull
     private LoanPurpose loanPurpose;
@@ -52,12 +51,12 @@ public final class CreditSubmitDto {
     private int downPayment;
 
     @NotNull
-    @PositiveOrZero
+    @Min(value = 10000) @Max(value = 1000000)
     private int loanAmount;
 
     @NotNull
-    @PositiveOrZero
-    private int loanTerm;
+    @Min(value = 1) @Max(value = 30)
+    private byte loanTerm;
 
     @NotNull
     private InterestRate interestRate;

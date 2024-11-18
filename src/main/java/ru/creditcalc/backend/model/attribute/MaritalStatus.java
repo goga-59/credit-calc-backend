@@ -11,7 +11,7 @@ public enum MaritalStatus implements KeyedEnum {
     SINGLE      ("single"),
     MARRIED     ("married"),
     DIVORCED    ("divorced"),
-    WIDOWED       ("widowed")
+    WIDOWED     ("widowed")
     ;
 
     @JsonValue
