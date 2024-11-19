@@ -19,13 +19,7 @@ public class CreditCalculatorApiController extends  ApiControllerBase {
 
     @PostMapping
     public CreditCalculatorModel postCalculatorResult(@Valid CreditCalculatorDto dto) throws ApiException {
-        return new CreditCalculatorModel(creditCalculatorService.calculateMonthlyPayment(
-                dto.getLoanAmount(),
-                dto.getLoanTerm(),
-                dto.getLoanPurpose(),
-                dto.getInterestRate(),
-                dto.getDownPayment()
-        ));
+        return new CreditCalculatorModel(creditCalculatorService.calculateMonthlyPayment(dto));
     }
 
 }

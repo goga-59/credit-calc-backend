@@ -5,10 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ru.creditcalc.backend.api.dto.CreditSubmitDto;
-import ru.creditcalc.backend.model.attribute.EmploymentType;
-import ru.creditcalc.backend.model.attribute.InterestRate;
-import ru.creditcalc.backend.model.attribute.LoanPurpose;
-import ru.creditcalc.backend.model.attribute.MaritalStatus;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -37,19 +33,19 @@ public class Credit {
 
     @Column(name = "birthday", nullable = false)
     @Temporal(TemporalType.DATE)
-    private LocalDate birthday;
+    private LocalDate birthDate;
 
     @Column(name = "marital_status", nullable = false)
-    private MaritalStatus maritalStatus;
+    private String maritalStatus;
 
     @Column(name = "salary", nullable = false)
     private int salary;
 
     @Column(name = "employment_type", nullable = false)
-    private EmploymentType employmentType;
+    private String employmentType;
 
     @Column(name = "loan_purpose", nullable = false)
-    private LoanPurpose loanPurpose;
+    private String  loanPurpose;
 
     @Column(name = "down_payment")
     private int downPayment;
@@ -61,39 +57,25 @@ public class Credit {
     private byte loanTerm;
 
     @Column(name = "interest_rate", nullable = false)
-    private InterestRate interestRate;
+    private byte interestRate;
 
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
 
-    public Credit(
-            String name,
-            String phone,
-            String email,
-            String address,
-            LocalDate birthday,
-            MaritalStatus maritalStatus,
-            int salary,
-            EmploymentType employmentType,
-            LoanPurpose loanPurpose,
-            int downPayment,
-            int loanAmount,
-            byte loanTerm,
-            InterestRate interestRate
-    ) {
-       this.name = name;
-       this.phone = phone;
-       this.email = email;
-       this.address = address;
-       this.birthday = birthday;
-       this.maritalStatus = maritalStatus;
-       this.salary = salary;
-       this.employmentType = employmentType;
-       this.loanPurpose = loanPurpose;
-       this.downPayment = downPayment;
-       this.loanAmount = loanAmount;
-       this.loanTerm = loanTerm;
-       this.interestRate = interestRate;
+    public Credit(CreditSubmitDto dto) {
+       this.name = dto.getName();
+       this.phone = dto.getPhone();
+       this.email = dto.getEmail();
+       this.address = dto.getAddress();
+       this.birthDate = dto.getBirthDate();
+       this.maritalStatus = dto.getMaritalStatus().getKey();
+       this.salary = dto.getSalary();
+       this.employmentType = dto.getEmploymentType().getKey();
+       this.loanPurpose = dto.getLoanPurpose().getKey();
+       this.downPayment = dto.getDownPayment();
+       this.loanAmount = dto.getLoanAmount();
+       this.loanTerm = dto.getLoanTerm();
+       this.interestRate = dto.getInterestRate();
        this.createdAt = Instant.now();
     }
 

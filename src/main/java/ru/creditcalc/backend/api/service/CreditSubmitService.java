@@ -2,17 +2,14 @@ package ru.creditcalc.backend.api.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.creditcalc.backend.api.dto.CreditSubmitDto;
 import ru.creditcalc.backend.model.attribute.EmploymentType;
-import ru.creditcalc.backend.model.attribute.InterestRate;
-import ru.creditcalc.backend.model.attribute.LoanPurpose;
 import ru.creditcalc.backend.model.attribute.MaritalStatus;
 import ru.creditcalc.backend.storage.model.Credit;
 import ru.creditcalc.backend.storage.repository.CreditRepository;
 
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.Arrays;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -26,67 +23,36 @@ public class CreditSubmitService {
     private final int MIN_AGE = 18;
     private final List<EmploymentType> RESTRICTED_EMPLOYMENT_TYPES = List.of(EmploymentType.UNEMPLOYED);
 
-    public List<String> submitLoan(
-            String name,
-            String phone,
-            String email,
-            String address,
-            LocalDate birthday,
-            MaritalStatus maritalStatus,
-            int salary,
-            EmploymentType employmentType,
-            LoanPurpose loanPurpose,
-            int downPayment,
-            int loanAmount,
-            byte loanTerm,
-            InterestRate interestRate
-    ) {
+    public List<String> submitLoan(CreditSubmitDto dto) {
 
-        SaveCredit(new Credit(
-                name,
-                phone,
-                email,
-                address,
-                birthday,
-                maritalStatus,
-                salary,
-                employmentType,
-                loanPurpose,
-                downPayment,
-                loanAmount,
-                loanTerm,
-                interestRate
-        ));
+        saveCredit(new Credit(dto));
 
-        String status = "Decline";
-        String reason;
-        short age = CalculateAge(birthday);
+        short age = calculateAge(dto.getBirthDate());
 
-        if (salary < MIN_SALARY) {
-            reason = "Salary";
-        } else if (RESTRICTED_EMPLOYMENT_TYPES.contains(employmentType)) {
-            reason = "Employment type";
-        } else if (loanAmount > MAX_LOAN_AMOUNT_TO_SALARY_RATIO * salary) {
-            reason = "Loan amount";
-        } else if (age < MIN_AGE) {
-            reason = "Age";
-        } else if (maritalStatus == MaritalStatus.DIVORCED || maritalStatus == MaritalStatus.WIDOWED) {
-            status = "Approved, but with limited conditions";
-            reason = "Marital status";
-        } else {
-            status = "Approved";
-            reason = "Everything is fine";
-        }
+        if (dto.getSalary() < MIN_SALARY)
+            return List.of("Rejected", "Salary");
 
-        return Arrays.asList(status, reason);
+        if (age < MIN_AGE)
+            return List.of("Rejected", "Age");
+
+        if (RESTRICTED_EMPLOYMENT_TYPES.contains(dto.getEmploymentType()))
+            return List.of("Rejected", "Employment type");
+
+        if (dto.getLoanAmount() > MAX_LOAN_AMOUNT_TO_SALARY_RATIO * dto.getSalary())
+            return List.of("Rejected", "Loan amount");
+
+        if (dto.getMaritalStatus() == MaritalStatus.DIVORCED || dto.getMaritalStatus() == MaritalStatus.WIDOWED)
+            return List.of("Approved with limits", "Marital status");
+
+        return List.of("Approved", "Everything is fine");
     }
 
-    public short CalculateAge(LocalDate birthday) {
+    public short calculateAge(LocalDate birthDate) {
         LocalDate currentDate = LocalDate.now();
-        return (short) Period.between(birthday, currentDate).getYears();
+        return (short) ChronoUnit.YEARS.between(birthDate, currentDate);
     }
 
-    private void SaveCredit(Credit credit) {
+    private void saveCredit(Credit credit) {
         creditRepository.save(credit);
     }
 
