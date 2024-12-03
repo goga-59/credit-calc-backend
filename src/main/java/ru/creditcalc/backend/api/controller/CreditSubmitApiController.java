@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.creditcalc.backend.api.dto.CreditSubmitDto;
 import ru.creditcalc.backend.api.model.CreditSubmitModel;
 import ru.creditcalc.backend.api.service.CreditSubmitService;
-import ru.creditcalc.backend.exception.ApiException;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class CreditSubmitApiController extends ApiControllerBase {
     private final CreditSubmitService creditSubmitService;
 
     @PostMapping
-    public CreditSubmitModel postCreditDecision(@Valid CreditSubmitDto dto) throws ApiException {
+    public CreditSubmitModel postCreditDecision(@Valid CreditSubmitDto dto) {
         List<String> response = creditSubmitService.submitLoan(dto);
         return new CreditSubmitModel(response.get(0), response.get(1));
     }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.creditcalc.backend.api.dto.CreditCalculatorDto;
 import ru.creditcalc.backend.api.model.CreditCalculatorModel;
 import ru.creditcalc.backend.api.service.CreditCalculatorService;
-import ru.creditcalc.backend.exception.ApiException;
 
 @RestController
 @RequestMapping("/api/calculator")
@@ -18,7 +17,7 @@ public class CreditCalculatorApiController extends  ApiControllerBase {
     private final CreditCalculatorService creditCalculatorService;
 
     @PostMapping
-    public CreditCalculatorModel postCalculatorResult(@Valid CreditCalculatorDto dto) throws ApiException {
+    public CreditCalculatorModel postCalculatorResult(@Valid CreditCalculatorDto dto) {
         return new CreditCalculatorModel(creditCalculatorService.calculateMonthlyPayment(dto));
     }
 
