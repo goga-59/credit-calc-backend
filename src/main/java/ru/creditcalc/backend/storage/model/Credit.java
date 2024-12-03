@@ -25,10 +25,10 @@ public class Credit {
     @Column(name = "phone", nullable = false, length = 11)
     private String phone;
 
-    @Column(name = "email", nullable = false, length = 64)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "address", nullable = false, length = 64)
+    @Column(name = "address", nullable = false)
     private String address;
 
     @Column(name = "birthday", nullable = false)
@@ -45,7 +45,7 @@ public class Credit {
     private String employmentType;
 
     @Column(name = "loan_purpose", nullable = false)
-    private String  loanPurpose;
+    private String loanPurpose;
 
     @Column(name = "down_payment")
     private int downPayment;
@@ -63,20 +63,20 @@ public class Credit {
     private Instant createdAt;
 
     public Credit(CreditSubmitDto dto) {
-       this.name = dto.getName();
-       this.phone = dto.getPhone();
-       this.email = dto.getEmail();
-       this.address = dto.getAddress();
-       this.birthDate = dto.getBirthDate();
-       this.maritalStatus = dto.getMaritalStatus().getKey();
-       this.salary = dto.getSalary();
-       this.employmentType = dto.getEmploymentType().getKey();
-       this.loanPurpose = dto.getLoanPurpose().getKey();
-       this.downPayment = dto.getDownPayment();
-       this.loanAmount = dto.getLoanAmount();
-       this.loanTerm = dto.getLoanTerm();
-       this.interestRate = dto.getInterestRate();
-       this.createdAt = Instant.now();
+        this.name = dto.getName();
+        this.phone = dto.getPhone();
+        this.email = dto.getEmail();
+        this.address = dto.getAddress();
+        this.birthDate = dto.getBirthDate();
+        this.maritalStatus = dto.getMaritalStatus().getKey();
+        this.salary = dto.getSalary();
+        this.employmentType = dto.getEmploymentType().getKey();
+        this.loanPurpose = dto.getLoanPurpose().getKey();
+        this.downPayment = dto.getDownPayment();
+        this.loanAmount = dto.getLoanAmount();
+        this.loanTerm = dto.getLoanTerm();
+        this.interestRate = dto.getInterestRate();
+        this.createdAt = Instant.now();
     }
 
 }
