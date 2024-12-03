@@ -25,7 +25,7 @@ public class CreditSubmitService {
 
     public List<String> submitLoan(CreditSubmitDto dto) {
 
-        saveCredit(new Credit(dto));
+        creditRepository.save(new Credit(dto));
 
         short age = calculateAge(dto.getBirthDate());
 
@@ -48,12 +48,7 @@ public class CreditSubmitService {
     }
 
     public short calculateAge(LocalDate birthDate) {
-        LocalDate currentDate = LocalDate.now();
-        return (short) ChronoUnit.YEARS.between(birthDate, currentDate);
-    }
-
-    private void saveCredit(Credit credit) {
-        creditRepository.save(credit);
+        return (short) ChronoUnit.YEARS.between(birthDate, LocalDate.now());
     }
 
 }
