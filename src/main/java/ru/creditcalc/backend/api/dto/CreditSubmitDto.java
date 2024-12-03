@@ -28,7 +28,7 @@ public final class CreditSubmitDto {
     @Size(min = 10)
     private String address;
 
-    @Past
+    @PastOrPresent
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
 
@@ -45,18 +45,20 @@ public final class CreditSubmitDto {
     @NotNull
     private LoanPurpose loanPurpose;
 
+    @NotNull
     @PositiveOrZero
     private int downPayment;
 
     @NotNull
-    @Min(value = 10000) @Max(value = 1000000)
+    @Min(10000) @Max(1000000)
     private int loanAmount;
 
     @NotNull
-    @Min(value = 1) @Max(value = 30)
+    @Min(1) @Max(30)
     private byte loanTerm;
 
     @NotNull
+    @Positive
     private byte interestRate;
 
 }

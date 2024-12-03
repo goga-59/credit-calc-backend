@@ -1,9 +1,6 @@
 package ru.creditcalc.backend.api.dto;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import ru.creditcalc.backend.model.attribute.LoanPurpose;
@@ -24,9 +21,10 @@ public final class CreditCalculatorDto {
     private LoanPurpose loanPurpose;
 
     @NotNull
-    @PositiveOrZero
+    @Positive
     private byte interestRate;
 
+    @NotNull
     @PositiveOrZero
     private int downPayment;
 
