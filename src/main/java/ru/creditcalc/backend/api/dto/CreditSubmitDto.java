@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import ru.creditcalc.backend.model.attribute.EmploymentType;
 import ru.creditcalc.backend.model.attribute.LoanPurpose;
 import ru.creditcalc.backend.model.attribute.MaritalStatus;
+import ru.creditcalc.backend.validation.annotation.PhoneNumber;
 
 import java.time.LocalDate;
 
@@ -18,7 +19,7 @@ public final class CreditSubmitDto {
     private String name;
 
     @NotBlank
-    @Pattern(regexp = "^\\d{11}$")
+    @PhoneNumber
     private String phone;
 
     @Email
