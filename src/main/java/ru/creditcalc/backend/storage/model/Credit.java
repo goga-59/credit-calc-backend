@@ -22,7 +22,7 @@ public class Credit {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "phone", nullable = false, length = 11)
+    @Column(name = "phone", nullable = false)
     private String phone;
 
     @Column(name = "email", nullable = false)

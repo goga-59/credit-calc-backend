@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public final class CreditCalculatorServiceTest extends SpringBootTests {
 
-    @Autowired private CreditCalculatorService creditCalculatorService;
+    private static final float eps = 0.1F;
 
-    private final float eps = 0.1F;
+    @Autowired private CreditCalculatorService creditCalculatorService;
 
     @Test
     void contextLoads() {
