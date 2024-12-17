@@ -45,6 +45,7 @@ server:
       enabled: true
     path: /error
 
+
   host: http://localhost:8080
 
   mail:
@@ -53,3 +54,5 @@ server:
 
   storage:
     data-directory: 'data'
+
+  port: 5500
