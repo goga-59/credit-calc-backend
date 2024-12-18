@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ru.creditcalc.backend.api.dto.CreditSubmitDto;
+import ru.creditcalc.backend.model.attribute.EmploymentType;
+import ru.creditcalc.backend.model.attribute.LoanPurpose;
+import ru.creditcalc.backend.model.attribute.MaritalStatus;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -36,16 +39,16 @@ public class Credit {
     private LocalDate birthDate;
 
     @Column(name = "marital_status", nullable = false)
-    private String maritalStatus;
+    private MaritalStatus maritalStatus;
 
     @Column(name = "salary", nullable = false)
     private int salary;
 
     @Column(name = "employment_type", nullable = false)
-    private String employmentType;
+    private EmploymentType employmentType;
 
     @Column(name = "loan_purpose", nullable = false)
-    private String loanPurpose;
+    private LoanPurpose loanPurpose;
 
     @Column(name = "down_payment")
     private int downPayment;
@@ -68,15 +71,17 @@ public class Credit {
         this.email = dto.getEmail();
         this.address = dto.getAddress();
         this.birthDate = dto.getBirthDate();
-        this.maritalStatus = dto.getMaritalStatus().getKey();
+        this.maritalStatus = dto.getMaritalStatus();
         this.salary = dto.getSalary();
-        this.employmentType = dto.getEmploymentType().getKey();
-        this.loanPurpose = dto.getLoanPurpose().getKey();
+        this.employmentType = dto.getEmploymentType();
+        this.loanPurpose = dto.getLoanPurpose();
         this.downPayment = dto.getDownPayment();
         this.loanAmount = dto.getLoanAmount();
         this.loanTerm = dto.getLoanTerm();
         this.interestRate = dto.getInterestRate();
         this.createdAt = Instant.now();
     }
+
+
 
 }
