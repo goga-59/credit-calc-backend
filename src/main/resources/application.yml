@@ -38,7 +38,7 @@ server:
         same-site: lax
 
   cors:
-    allowed-origin: "http://localhost:8080"
+    allowed-origins-pattern: "http://localhost:[8080,5050]"
 
   error:
     whitelabel:
@@ -54,5 +54,3 @@ server:
 
   storage:
     data-directory: 'data'
-
-  port: 5500
