@@ -11,9 +11,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public enum EmploymentType implements KeyedEnum {
 
-    FULL_TIME_EMPLOYMENT    ("full-time"),
+    FULL_TIME_EMPLOYMENT    ("full_time"),
     CONTRACT_EMPLOYMENT     ("contract"),
-    SELF_EMPLOYMENT         ("self-employment"),
+    SELF_EMPLOYMENT         ("self_employment"),
     UNEMPLOYED              ("unemployed")
     ;
 

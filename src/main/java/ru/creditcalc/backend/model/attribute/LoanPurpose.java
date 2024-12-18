@@ -12,8 +12,8 @@ import java.util.Optional;
 public enum LoanPurpose implements KeyedEnum {
 
     MORTGAGE        ("mortgage"),
-    CAR_LOAN        ("car-loan"),
-    CONSUMER_LOAN   ("consumer-loan")
+    CAR_LOAN        ("car_loan"),
+    CONSUMER_LOAN   ("consumer_loan")
     ;
 
     @JsonValue
