@@ -38,7 +38,7 @@ server:
         same-site: lax
 
   cors:
-    allowed-origins-pattern: "http://localhost:[8080,5050]"
+    allowed-origins-pattern: "http://localhost:[8080,5050],http://127.0.0.1:[8080,5050]"
 
   error:
     whitelabel:
