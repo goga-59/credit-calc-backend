@@ -9,8 +9,6 @@ import ru.creditcalc.backend.api.dto.CreditSubmitDto;
 import ru.creditcalc.backend.api.model.CreditSubmitModel;
 import ru.creditcalc.backend.api.service.CreditSubmitService;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/submit")
 @RequiredArgsConstructor
@@ -20,8 +18,7 @@ public class CreditSubmitApiController extends ApiControllerBase {
 
     @PostMapping
     public CreditSubmitModel postCreditDecision(@Valid CreditSubmitDto dto) {
-        List<String> response = creditSubmitService.submitLoan(dto);
-        return new CreditSubmitModel(response.get(0), response.get(1));
+        return CreditSubmitModel.of(creditSubmitService.submitLoan(dto));
     }
 
 }

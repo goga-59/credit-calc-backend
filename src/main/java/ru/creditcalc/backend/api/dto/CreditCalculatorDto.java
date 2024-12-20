@@ -24,7 +24,6 @@ public final class CreditCalculatorDto {
     @Positive
     private byte interestRate;
 
-    @NotNull
     @PositiveOrZero
     private int downPayment;
 

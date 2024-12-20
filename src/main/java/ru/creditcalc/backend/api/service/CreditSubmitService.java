@@ -24,7 +24,6 @@ public class CreditSubmitService {
     private final List<EmploymentType> RESTRICTED_EMPLOYMENT_TYPES = List.of(EmploymentType.UNEMPLOYED);
 
     public List<String> submitLoan(CreditSubmitDto dto) {
-
         creditRepository.save(new Credit(dto));
 
         short age = calculateAge(dto.getBirthDate());
