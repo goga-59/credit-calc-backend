@@ -4,7 +4,7 @@ import jakarta.persistence.Converter;
 import ru.creditcalc.backend.model.attribute.LoanPurpose;
 
 @Converter(autoApply = true)
-public class LoanPurposeConverter extends TemplateConverter<LoanPurpose> {
+public class LoanPurposeConverter extends ConverterTemplate<LoanPurpose> {
 
     @Override
     protected LoanPurpose[] enumConstants() {

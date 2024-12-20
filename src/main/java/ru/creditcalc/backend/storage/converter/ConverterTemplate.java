@@ -6,7 +6,7 @@ import ru.creditcalc.backend.model.attribute.KeyedEnum;
 import ru.creditcalc.backend.util.KeyedEnumConstantFinder;
 
 @Converter
-public abstract class TemplateConverter<E extends KeyedEnum> implements AttributeConverter<E, String> {
+public abstract class ConverterTemplate<E extends KeyedEnum> implements AttributeConverter<E, String> {
 
     protected abstract E[] enumConstants();
 
