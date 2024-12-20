@@ -46,9 +46,8 @@ public final class CreditSubmitDto {
     @NotNull
     private LoanPurpose loanPurpose;
 
-    @NotNull
     @PositiveOrZero
-    private int downPayment;
+    private Integer downPayment;
 
     @NotNull
     @Min(10000) @Max(1000000)

@@ -51,7 +51,7 @@ public class Credit {
     private LoanPurpose loanPurpose;
 
     @Column(name = "down_payment")
-    private int downPayment;
+    private Integer downPayment;
 
     @Column(name = "loan_amount", nullable = false)
     private int loanAmount;
