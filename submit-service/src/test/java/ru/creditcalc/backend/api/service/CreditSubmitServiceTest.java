@@ -3,7 +3,7 @@ package ru.creditcalc.backend.api.service;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import ru.creditcalc.backend.SpringBootTests;
 import ru.creditcalc.backend.api.dto.CreditSubmitDto;
 import ru.creditcalc.backend.model.attribute.EmploymentType;
@@ -23,7 +23,7 @@ public final class CreditSubmitServiceTest extends SpringBootTests {
 
     @Autowired
     private CreditSubmitService creditSubmitService;
-    @MockBean
+    @MockitoBean
     private CreditRepository creditRepository;
 
     @Test

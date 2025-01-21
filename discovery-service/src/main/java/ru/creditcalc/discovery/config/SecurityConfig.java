@@ -1,7 +1,6 @@
 package ru.creditcalc.discovery.config;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
