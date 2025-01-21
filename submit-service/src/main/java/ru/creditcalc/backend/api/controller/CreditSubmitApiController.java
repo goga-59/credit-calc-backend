@@ -12,7 +12,7 @@ import ru.creditcalc.backend.api.service.CreditSubmitService;
 @RestController
 @RequestMapping("/api/submit")
 @RequiredArgsConstructor
-public class CreditSubmitApiController extends ApiControllerBase {
+public class CreditSubmitApiController {
 
     private final CreditSubmitService creditSubmitService;
 

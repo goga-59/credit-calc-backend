@@ -14,7 +14,7 @@ public class CreditCalculatorService {
         int numberOfPayments = dto.getLoanTerm() * 12;
         int loanAmount = dto.getLoanAmount();
 
-        if (dto.getLoanPurpose() == LoanPurpose.MORTGAGE)
+        if (dto.getLoanPurpose() == LoanPurpose.MORTGAGE && dto.getDownPayment() != null)
             loanAmount -= dto.getDownPayment();
 
         if (monthlyInterestRate == 0D)
