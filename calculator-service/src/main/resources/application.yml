@@ -1,4 +1,7 @@
 spring:
+  application:
+    name: calculator-service
+
   datasource:
     driver-class-name: 'org.h2.Driver'
     url: 'jdbc:h2:file:./test'
@@ -7,17 +10,6 @@ spring:
     hibernate:
       ddl-auto: update
     open-in-view: false
-
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: creditcalc.agent
-    password: '${GMAIL_APP_PASSWORD}'
-    properties:
-      mail.smtp.auth: true
-      mail.smtp.starttls.enable: true
-      mail.smtp.ssl.trust: smtp.gmail.com
-    test-connection: true
 
   sql:
     init:
@@ -38,7 +30,7 @@ server:
         same-site: lax
 
   cors:
-    allowed-origins-pattern: "http://localhost:[8080,5500,63342],http://127.0.0.1:[8080,5500]"
+    allowed-origins-pattern: "http://localhost:[8080,5500,8761,8081],http://127.0.0.1:[8080,5500]"
 
   error:
     whitelabel:
@@ -48,9 +40,12 @@ server:
 
   host: http://localhost:8080
 
-  mail:
-    name: 'Credit Calculator'
-    address: creditcalc.agent@gmail.com
-
   storage:
     data-directory: 'data'
+
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

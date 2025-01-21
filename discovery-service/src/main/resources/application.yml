@@ -1,9 +1,6 @@
-server:
-  port: ${PORT:8181}
-
 spring:
   application:
-    name: discovery
+    name: discovery-service
 
 eureka:
   instance:
@@ -11,5 +8,29 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-    serviceUrl:
-      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka
+
+logging:
+  level:
+    root: INFO
+    '[org.springframework.web]': DEBUG
+    '[org.springframework.security]': DEBUG
+  pattern:
+    console: '%clr([){faint}%clr(%d{dd.MM.yy}){faint} %clr(%d{HH:mm:ss}){magenta}%clr(]){faint} %clr(%5p) %clr(:){faint} %clr(%-40.40logger{0}){cyan} %clr(:){faint} %m%n%wEx'
+
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: lax
+
+  cors:
+    allowed-origins-pattern: "http://localhost:[8080,5500,8761,8081,8082],http://127.0.0.1:[8080,5500]"
+
+  error:
+    whitelabel:
+      enabled: true
+    path: /error
+
+  port: 8761
+
+
