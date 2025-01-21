@@ -1,1 +1,0 @@
-rootProject.name = "credit-submit-service"
