@@ -26,15 +26,10 @@ public class SecurityConfig {
                         .anyRequest().permitAll())
                 .csrf(csrf -> csrf
                         .csrfTokenRepository(new HttpSessionCsrfTokenRepository())
-                        .ignoringRequestMatchers(antMatcher("/**")))
+                        .ignoringRequestMatchers(antMatcher("/eureka/apps/**")))
                 .sessionManagement(sessionManagement -> sessionManagement
                         .maximumSessions(1))
                 .build();
     }
-//
-//    @Bean
-//    public TomcatConnectorCustomizer tomcatConnectorCustomizer() {
-//        return connector -> connector.setParseBodyMethods("POST,PATCH,PUT,DELETE");
-//    }
 
 }
