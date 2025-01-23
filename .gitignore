@@ -9,5 +9,5 @@ out/
 spring-shell.log
 test.mv.db
 
-!creditSubmitService/gradle/wrapper/gradle-wrapper.jar
-!creditSubmitService/gradle/wrapper/gradle-wrapper.properties
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
