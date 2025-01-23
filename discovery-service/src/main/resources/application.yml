@@ -23,9 +23,6 @@ server:
       cookie:
         same-site: lax
 
-  cors:
-    allowed-origins-pattern: "http://localhost:[8080,5500,8761,8081,8082],http://127.0.0.1:[8080,5500]"
-
   error:
     whitelabel:
       enabled: true

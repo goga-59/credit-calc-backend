@@ -1,6 +1,7 @@
 spring:
   application:
     name: api-gateway
+
   cloud:
     gateway:
       routes:
@@ -43,14 +44,12 @@ server:
         same-site: lax
 
   cors:
-    allowed-origins-pattern: "http://localhost:[8080,5500],http://127.0.0.1:[8080,5500]"
+    allowed-origins-pattern: "http://localhost:[8080,5500, 63342],http://127.0.0.1:[8080,5500]"
 
   error:
     whitelabel:
       enabled: true
     path: /error
-
-  host: http://localhost:8080
 
 eureka:
   client:
