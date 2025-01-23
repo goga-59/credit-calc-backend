@@ -68,7 +68,7 @@ public final class CreditSubmitServiceTest extends SpringBootTests {
 
         List<String> result = assertDoesNotThrow(() -> creditSubmitService.submitLoan(dto));
 
-        assertEquals(List.of("Rejected", "Age"), result);
+        assertEquals(List.of("Rejected", "Заявка отклонена. Причина: Ваш возраст должен быть не менее 18 лет для получения кредита."), result);
         Mockito.verify(creditRepository, times(1)).save(any(Credit.class));
     }
 
@@ -95,7 +95,7 @@ public final class CreditSubmitServiceTest extends SpringBootTests {
 
         List<String> result = assertDoesNotThrow(() -> creditSubmitService.submitLoan(dto));
 
-        assertEquals(List.of("Rejected", "Salary"), result);
+        assertEquals(List.of("Rejected", "Заявка отклонена. Причина: Ваш доход ниже минимального для получения кредита."), result);
         Mockito.verify(creditRepository, times(1)).save(any(Credit.class));
     }
 
@@ -123,7 +123,7 @@ public final class CreditSubmitServiceTest extends SpringBootTests {
 
         List<String> result = assertDoesNotThrow(() -> creditSubmitService.submitLoan(dto));
 
-        assertEquals(List.of("Rejected", "Employment type"), result);
+        assertEquals(List.of("Rejected", "Заявка отклонена. Причина: Кредит не может быть предоставлен с текущим типом занятости."), result);
         Mockito.verify(creditRepository, times(1)).save(any(Credit.class));
     }
 
@@ -151,7 +151,7 @@ public final class CreditSubmitServiceTest extends SpringBootTests {
 
         List<String> result = assertDoesNotThrow(() -> creditSubmitService.submitLoan(dto));
 
-        assertEquals(List.of("Rejected", "Loan amount"), result);
+        assertEquals(List.of("Rejected", "Заявка отклонена. Причина: Запрашивамая сумма кредита превышает допустимый лимит относительно вашего дохода."), result);
         Mockito.verify(creditRepository, times(1)).save(any(Credit.class));
     }
 
@@ -179,7 +179,7 @@ public final class CreditSubmitServiceTest extends SpringBootTests {
 
         List<String> result = assertDoesNotThrow(() -> creditSubmitService.submitLoan(dto));
 
-        assertEquals(List.of("Approved with limits", "Marital status"), result);
+        assertEquals(List.of("Approved with limits", "Мы можем предложить вам ограниченные условия кредита."), result);
         Mockito.verify(creditRepository, times(1)).save(any(Credit.class));
     }
 
@@ -206,7 +206,7 @@ public final class CreditSubmitServiceTest extends SpringBootTests {
 
         List<String> result = assertDoesNotThrow(() -> creditSubmitService.submitLoan(dto));
 
-        assertEquals(List.of("Approved with limits", "Marital status"), result);
+        assertEquals(List.of("Approved with limits", "Мы можем предложить вам ограниченные условия кредита."), result);
         Mockito.verify(creditRepository, times(1)).save(any(Credit.class));
     }
 
@@ -234,7 +234,7 @@ public final class CreditSubmitServiceTest extends SpringBootTests {
 
         List<String> result = assertDoesNotThrow(() -> creditSubmitService.submitLoan(dto));
 
-        assertEquals(List.of("Approved", "Everything is fine"), result);
+        assertEquals(List.of("Approved", "Кредит одобрен."), result);
         Mockito.verify(creditRepository, times(1)).save(any(Credit.class));
     }
 
