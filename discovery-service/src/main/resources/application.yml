@@ -30,4 +30,7 @@ server:
 
   port: 8761
 
+  cors:
+    allowed-origins-pattern: "http://localhost:[8080,5500,63342],http://127.0.0.1:[8080,5500]"
+
 
