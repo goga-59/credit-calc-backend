@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: calculator-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/calculator
+
+        - id: submit-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/submit
+
+        - id: discovery-service
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/web
+          filters:
+            - SetPath=/
+
+        - id: discovery-service-static
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/**
+
+logging:
+  level:
+    root: INFO
+    '[org.springframework.web]': DEBUG
+    '[org.springframework.security]': DEBUG
+    '[org.springframework.cloud.gateway.route.RouteDefinitionLocator]': INFO
+    '[org.springframework.cloud.gateway]': TRACE
+  pattern:
+    console: '%clr([){faint}%clr(%d{dd.MM.yy}){faint} %clr(%d{HH:mm:ss}){magenta}%clr(]){faint} %clr(%5p) %clr(:){faint} %clr(%-40.40logger{0}){cyan} %clr(:){faint} %m%n%wEx'
+
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: lax
+
+  cors:
+    allowed-origins-pattern: "http://localhost:[8080,5500,63342],http://127.0.0.1:[8080,5500]"
+
+  error:
+    whitelabel:
+      enabled: true
+    path: /error
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
